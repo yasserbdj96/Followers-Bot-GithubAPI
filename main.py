@@ -111,7 +111,8 @@ def make_README(id="",url="",clear=False):
     else:
         f = open('README.md','w+')
         now = datetime.now()
-        f.write("<h1>My Followers</h1>")
+        f.write("<h1>My Followers</h1><br>")
+        f.write("<p>This project is based on the GithubAPI. It will run every 24 hours in order to follow the users who have followed me and unfollow the users who have unfollowed me.</p>")
         f.write(f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")} (UTC)</h4><br>')
         f.close
     os.remove("index.html")
