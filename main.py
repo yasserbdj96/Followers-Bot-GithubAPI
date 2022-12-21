@@ -110,12 +110,10 @@ def make_README(id="",url="",clear=False):
         f.close
     else:
         f = open('README.md','w+')
+        now = datetime.now()
         f.write("<h1>My Followers</h1>\n")
+        f.write(f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")}</h4>\n')
         f.close
-    f = open('README.md','a')
-    now = datetime.now()
-    img=f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")}</h4>'
-    f.write(img)
     os.remove("index.html")
     shutil.copy2('README.md','index.html')
 
