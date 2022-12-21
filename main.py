@@ -111,8 +111,8 @@ def make_README(id="",url="",clear=False):
     else:
         f = open('README.md','w+')
         now = datetime.now()
-        f.write("<h1>My Followers</h1>\n")
-        f.write(f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")}</h4>\n')
+        f.write("<h1>My Followers</h1>")
+        f.write(f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")} (UTC)</h4><br>')
         f.close
     os.remove("index.html")
     shutil.copy2('README.md','index.html')
