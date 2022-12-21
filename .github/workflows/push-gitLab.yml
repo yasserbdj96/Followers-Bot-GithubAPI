@@ -10,7 +10,7 @@ jobs:
     - name: Mirror + trigger CI
       uses: SvanBoxel/gitlab-mirror-and-ci-action@master
       with:
-        args: "https://gitlab.com/yasserbdj96/my_followers"
+        args: "https://gitlab.com/yasserbdj96/Followers-Bot-GithubAPI"
       env:
         FORCE_PUSH: "false"
         GITLAB_HOSTNAME: "gitlab.com"
