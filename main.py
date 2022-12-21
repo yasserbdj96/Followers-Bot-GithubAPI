@@ -1,8 +1,17 @@
-# -------------------------------------------
-# Name: AUTOMATION FOLLOW
-# Portfolio: https://tovinhkhang.netlify.app
-# -------------------------------------------
+#!/usr/bin/env python
+# coding:utf-8
+#   |                                                          |
+# --+----------------------------------------------------------+--
+#   |   Code by : yasserbdj96                                  |
+#   |   Email   : yasser.bdj96@gmail.com                       |
+#   |   Github  : https://github.com/yasserbdj96               |
+#   |   BTC     : bc1q2dks8w8uurca5xmfwv4jwl7upehyjjakr3xga9   |
+# --+----------------------------------------------------------+--  
+#   |        all posts #yasserbdj96 ,all views my own.         |
+# --+----------------------------------------------------------+--
+#   |                                                          |
 
+#START{
 # IMPORT
 import requests
 import argparse
@@ -11,6 +20,7 @@ import time
 import shutil
 from hexor import *
 import os
+from datetime import datetime
 
 # INPUT ARG
 ap = argparse.ArgumentParser()
@@ -102,6 +112,10 @@ def make_README(id="",url="",clear=False):
         f = open('README.md','w+')
         f.write("<h1>My Followers</h1>\n")
         f.close
+    f = open('README.md','a')
+    now = datetime.now()
+    img=f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")}</h4>'
+    f.write(img)
     os.remove("index.html")
     shutil.copy2('README.md','index.html')
 
@@ -111,4 +125,4 @@ followers_list=followers(args)
 following_list=following(args)
 following_my_followers(followers_list,following_list)
 unfollowing_my_unfollowers(followers_list,following_list)
-#print(followers_list)
+#}END.
