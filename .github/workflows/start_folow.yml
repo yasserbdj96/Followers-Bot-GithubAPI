@@ -44,5 +44,5 @@ jobs:
           git add .
           git config user.name 'yasserbdj96'
           git config user.email 'by.root96@gmail.com'
-          git commit -am "update MY FOLLOWERS list"
+          git commit -am "update last_page.txt"
           git push 
