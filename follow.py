@@ -62,7 +62,7 @@ def following():
     x=0
     n_users=0
     #for i in range(last_page,last_page+pages):
-    res = sesh.get("https://api.github.com/users?page=" + str(last_page)).json()
+    res = sesh.get("https://api.github.com/users?since=" + str(last_page)).json()
     for user in res:
         following.append(user['login'])
         n_users+=1
