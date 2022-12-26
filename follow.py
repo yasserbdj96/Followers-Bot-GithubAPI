@@ -55,7 +55,7 @@ def following():
         last_page=int(f.read())
     except:
         last_page=1
-    pages=9
+    pages=1
     print('This may take a while... there are '+str(pages)+' pages to go through.')
     
     x=0
