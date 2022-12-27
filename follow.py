@@ -61,12 +61,12 @@ def following():
     
     x=0
     n_users=0
-    for i in range(last_page,last_page+pages):
-        res = sesh.get("https://api.github.com/users?since=" + str(i)).json()
-        for user in res:
-            following.append(user['login'])
-            n_users+=1
-            #print(user['login'])
+    # for i in range(last_page,last_page+pages):
+    res = sesh.get("https://api.github.com/users?since=" + str(last_page)).json()
+    for user in res:
+        following.append(user['login'])
+        n_users+=1
+        #print(user['login'])
     f = open("last_page.txt", "w+")
     f.write(str(last_page+pages))
     print(n_users)
