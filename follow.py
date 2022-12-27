@@ -56,16 +56,16 @@ def following():
     except:
         last_page=1
     print(last_page)
-    pages=1
+    pages=2
     print('This may take a while... there are '+str(pages)+' pages to go through.')
     
     x=0
     n_users=0
-    #for i in range(last_page,last_page+pages):
-    res = sesh.get("https://api.github.com/users?since=" + str(last_page)).json()
-    for user in res:
-        following.append(user['login'])
-        n_users+=1
+    for i in range(last_page,last_page+pages):
+        res = sesh.get("https://api.github.com/users?since=" + str(i)).json()
+        for user in res:
+            following.append(user['login'])
+            n_users+=1
             #print(user['login'])
     f = open("last_page.txt", "w+")
     f.write(str(last_page+pages))
