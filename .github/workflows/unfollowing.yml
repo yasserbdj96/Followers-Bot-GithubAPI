@@ -39,10 +39,3 @@ jobs:
         run: pip install -r requirements.txt
       - name: unfollowing my unfollowers
         run: python unfollowing_my_unfollowers.py -m ${{ github.actor }} -t ${{ secrets.MY_FOLLOWERS }}
-      - name: push commits
-        run: |
-          git add .
-          git config user.name 'yasserbdj96'
-          git config user.email 'by.root96@gmail.com'
-          git commit -am "update last_page.txt"
-          git push 
