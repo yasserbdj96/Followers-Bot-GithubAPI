@@ -1,0 +1,48 @@
+name: unfollowing my unfollowers
+on:
+  # 
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    #- cron: '*/10 * * * *'
+    - cron: '59 12 * * 5'
+#defaults:
+#  run:
+#    working-directory: wrdir
+jobs:
+  #deploy:
+  #  runs-on: windows-latest
+  #  steps:
+  #    - name: install readline
+  #      run: python -m pip install readline
+  build:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest] #,windows-latest
+        python-version: [3.9]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{matrix.python-version}}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{matrix.python-version}}
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+      # You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: pip Upgrade
+        run: python -m pip install --upgrade pip
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: unfollowing my unfollowers
+        run: python unfollowing_my_unfollowers.py -m ${{ github.actor }} -t ${{ secrets.MY_FOLLOWERS }}
+      - name: push commits
+        run: |
+          git add .
+          git config user.name 'yasserbdj96'
+          git config user.email 'by.root96@gmail.com'
+          git commit -am "update last_page.txt"
+          git push 
