@@ -61,20 +61,51 @@ def followers(args):
     print("Total Followers: "+str(len(followers)))
     return followers
 
-followers_list=followers(args)
+# OUTPUT list of i'm following:
+def following(args):
+    target = args.username
+    res = sesh.get("https://api.github.com/users/" + target + "/following")
+    linkArray = requests.utils.parse_header_links(res.headers['Link'].rstrip('>').replace('>,<', ',<'))
+    url = linkArray[1]['url']
+    lastPage = url.split('=')[-1]
+    following = []
+    print('Grabbing '+target+' Following\nThis may take a while... there are '+str(lastPage)+' pages to go through.')
+    x=0
+    for i in range(1,int(lastPage)+1):
+        res = sesh.get('https://api.github.com/users/' + target + "/following?page=" + str(i)).json()
+        for user in res:
+            following.append(user['login'])
+    print("Total Following: "+str(len(following)))
+    return following
 
-f = open('README.md','w+')
-now = datetime.now()
-f.write("<h1>My Followers</h1><br>")
-f.write("<p>This project is based on the GithubAPI. It will run every 24 hours in order to follow the users who have followed me and unfollow the users who have unfollowed me.</p>")
-f.write(f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")} (UTC)</h4><br>')
-for i in range(len(followers_list)):
-    f.write(f'<a href="https://github.com/{followers_list[i]}"><img src="https://github.com/{followers_list[i]}.png" alt="{followers_list[i]}" style="height:50px;width:50px;"/></a>')
-f.close
-try:
-    os.remove("index.html")
-except:
-    pass
-shutil.copy2('README.md','index.html')
+def following_my_followers(followers_list,following_list):
+    print("Starting to Follow Users...")
+    for i in range(len(followers_list)):
+        if not followers_list[i] in following_list:
+            time.sleep(2)
+            res = sesh.put('https://api.github.com/user/following/' + followers_list[i])
+            if res.status_code != 204:
+                print("Rate-limited, please wait until it finish!")
+                time.sleep(60)
+            else:
+                print("Start Following : "+ followers_list[i])
+
+def unfollowing_my_unfollowers(followers_list,following_list):
+    print("Starting to Unfollowing Users...")
+    for i in range(len(following_list)):
+        if not following_list[i] in followers_list:
+            time.sleep(2)
+            res = sesh.delete('https://api.github.com/user/following/' + following_list[i])
+            if res.status_code != 204:
+                print("Rate-limited, please wait until it finish!")
+                time.sleep(60)
+            else:
+                print("Unfollowing : "+ following_list[i])
+
+followers_list=followers(args)
+following_list=following(args)
+following_my_followers(followers_list,following_list)
+unfollowing_my_unfollowers(followers_list,following_list)
+
 #print(followers_list)
 #print(following_list)
