@@ -73,7 +73,7 @@ def get_random_users(following_list):
         f.close()
     except:
         last_page=1
-    pages=100
+    pages=10
     print('This may take a while... there are '+str(pages)+' pages to go through.')
     
     new_users = []

@@ -65,11 +65,11 @@ followers_list=followers(args)
 
 f = open('README.md','w+')
 now = datetime.now()
-f.write("<h1>My Followers</h1><br>")
-f.write("<p>This project is based on the GithubAPI. It will run every 24 hours in order to follow the users who have followed me and unfollow the users who have unfollowed me.</p>")
-f.write(f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")} (UTC)</h4><br>')
+f.write("<p>This bot is programmed on GithubAPI in order to increase the number of followers on github, it follows about 9 people every 20 minutes, or about 600 every 24 hours, and follows those who follow me every 24 hours, and unfollows members who have been followed and did not follow me every week.</p>")
+f.write("<h1>My Followers:</h1><br>")
 for i in range(len(followers_list)):
     f.write(f'<a href="https://github.com/{followers_list[i]}"><img src="https://github.com/{followers_list[i]}.png" alt="{followers_list[i]}" style="height:50px;width:50px;"/></a>')
+f.write(f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")} (UTC)</h4><br>')
 f.close
 try:
     os.remove("index.html")
