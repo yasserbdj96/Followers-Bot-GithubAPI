@@ -90,22 +90,9 @@ def following_my_followers(followers_list,following_list):
             else:
                 print("Start Following : "+ followers_list[i])
 
-def unfollowing_my_unfollowers(followers_list,following_list):
-    print("Starting to Unfollowing Users...")
-    for i in range(len(following_list)):
-        if not following_list[i] in followers_list:
-            time.sleep(2)
-            res = sesh.delete('https://api.github.com/user/following/' + following_list[i])
-            if res.status_code != 204:
-                print("Rate-limited, please wait until it finish!")
-                time.sleep(60)
-            else:
-                print("Unfollowing : "+ following_list[i])
-
 followers_list=followers(args)
 following_list=following(args)
 following_my_followers(followers_list,following_list)
-unfollowing_my_unfollowers(followers_list,following_list)
 
 #print(followers_list)
 #print(following_list)
