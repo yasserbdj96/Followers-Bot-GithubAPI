@@ -51,30 +51,37 @@ def followers(args):
     url = linkArray[1]['url']
     lastPage = url.split('=')[-1]
     followers = []
+    followers_avatar = []
     print('Grabbing '+target+' Followers\nThis may take a while... there are '+str(lastPage)+' pages to go through.')
     x=0
     for i in range(1,int(lastPage)+1):
         res = sesh.get('https://api.github.com/users/' + target + "/followers?page=" + str(i)).json()
         for user in res:
-            followers.append(user['login'])
+            followers.append([user['login'],user['avatar_url']])
             #make_README(user['login'],user['avatar_url'])
     print("Total Followers: "+str(len(followers)))
     return followers
 
-followers_list=followers(args)
+followers_info=followers(args)
 
 f = open('README.md','w+')
 now = datetime.now()
 f.write("<p>This bot is programmed on GithubAPI in order to increase the number of followers on github, it follows about 9 people every 20 minutes, or about 600 every 24 hours, and follows those who follow me every 24 hours, and unfollows members who have been followed and did not follow me every week.</p>")
-f.write("<h1>My Followers:</h1><br>")
-for i in range(len(followers_list)):
-    f.write(f'<a href="https://github.com/{followers_list[i]}"><img src="https://github.com/{followers_list[i]}.png" alt="{followers_list[i]}" style="height:50px;width:50px;"/></a>')
+f.write("<h1>My Followers:</h1><br>\n")
+for i in range(len(followers_info)):
+    f.write(f'<a href="https://github.com/{followers_info[i][0]}"><img src="{followers_info[i][1]}" alt="{followers_info[i][0]}" style="height:50px;width:50px;"/></a>\n')
 f.write(f'<br><h4>last update at : {now.strftime("%d/%m/%Y %H:%M:%S")} (UTC)</h4><br>')
 f.close
+
+import json
+
+with open("Dataset.json", "w") as f:
+    json.dump(followers_info, f)
+"""
 try:
     os.remove("index.html")
 except:
     pass
 shutil.copy2('README.md','index.html')
 #print(followers_list)
-#print(following_list)
+#print(following_list)"""
