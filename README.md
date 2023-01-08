@@ -1,3 +1,6 @@
+
+[![Join the chat at https://gitter.im/yasserbdj96/Followers-Bot-GithubAPI](https://badges.gitter.im/yasserbdj96/Followers-Bot-GithubAPI.svg)](https://gitter.im/yasserbdj96/Followers-Bot-GithubAPI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <p>This bot is programmed on GithubAPI in order to increase the number of followers on github, it follows about 9 people every 20 minutes, or about 600 every 24 hours, and follows those who follow me every 24 hours, and unfollows members who have been followed and did not follow me every week.</p><h1>My Followers:</h1><br>
 <a href="https://github.com/fundon"><img src="https://avatars.githubusercontent.com/u/27926?v=4" alt="fundon" style="height:50px;width:50px;"/></a>
 <a href="https://github.com/esin"><img src="https://avatars.githubusercontent.com/u/69767?v=4" alt="esin" style="height:50px;width:50px;"/></a>
