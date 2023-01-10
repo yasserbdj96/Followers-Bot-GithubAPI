@@ -66,7 +66,8 @@ followers_info=followers(args)
 
 f = open('README.md','w+')
 now = datetime.now()
-f.write("<p>This bot is programmed on GithubAPI in order to increase the number of followers on github, it follows about 9 people every 20 minutes, or about 600 every 24 hours, and follows those who follow me every 24 hours, and unfollows members who have been followed and did not follow me every week.</p>")
+f.write("<p>This bot is programmed on GithubAPI in order to increase the number of followers on github, it follows about 30 users every 60 minutes, or about 720 every 24 hours, and follows those who follow me every 24 hours, and unfollows members who have been followed and did not follow me every week.</p>")
+f.write("\n[![Join the chat at https://gitter.im/yasserbdj96/Followers-Bot-GithubAPI](https://badges.gitter.im/yasserbdj96/Followers-Bot-GithubAPI.svg)](https://gitter.im/yasserbdj96/Followers-Bot-GithubAPI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n")
 f.write("<h1>My Followers:</h1><br>\n")
 for i in range(len(followers_info)):
     f.write(f'<a href="https://github.com/{followers_info[i][0]}"><img src="{followers_info[i][1]}" alt="{followers_info[i][0]}" style="height:50px;width:50px;"/></a>\n')
