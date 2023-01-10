@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   schedule:
     #- cron: '*/10 * * * *'
-    - cron: '*/20 * * * *'
+    - cron: '*/60 * * * *'
 #defaults:
 #  run:
 #    working-directory: wrdir
@@ -44,7 +44,7 @@ jobs:
       - name: push commits
         run: |
           git add .
-          git config user.name 'yasserbdj96'
-          git config user.email 'by.root96@gmail.com'
+          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
           git commit -am "update MY FOLLOWERS list"
           git push 
