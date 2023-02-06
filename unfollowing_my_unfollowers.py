@@ -89,7 +89,7 @@ def whitelist():
     return whitelist_users
 
 def unfollowing_my_unfollowers(followers_list,following_list):
-    whitelist_users=whitelist_users()
+    whitelist_users=whitelist()
     print("Starting to Unfollowing Users...")
     for i in range(len(following_list)):
         if not following_list[i] in followers_list and not following_list[i] in whitelist_users:
