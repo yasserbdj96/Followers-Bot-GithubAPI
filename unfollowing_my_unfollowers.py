@@ -78,10 +78,21 @@ def following(args):
     print("Total Following: "+str(len(following)))
     return following
 
+def whitelist():
+    whitelist_users = []
+    try:
+        with open("whitelist.txt.txt") as file_in:
+            for line in file_in:
+                whitelist_users.append(line.replace('\n',''))
+    except:
+        pass
+    return whitelist_users
+
 def unfollowing_my_unfollowers(followers_list,following_list):
+    whitelist_users=whitelist_users()
     print("Starting to Unfollowing Users...")
     for i in range(len(following_list)):
-        if not following_list[i] in followers_list:
+        if not following_list[i] in followers_list and not following_list[i] in whitelist_users:
             time.sleep(2)
             res = sesh.delete('https://api.github.com/user/following/' + following_list[i])
             if res.status_code != 204:
