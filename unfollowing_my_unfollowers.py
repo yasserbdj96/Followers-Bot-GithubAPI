@@ -81,7 +81,7 @@ def following(args):
 def whitelist():
     whitelist_users = []
     try:
-        with open("whitelist.txt.txt") as file_in:
+        with open("whitelist.txt") as file_in:
             for line in file_in:
                 whitelist_users.append(line.replace('\n',''))
     except:
